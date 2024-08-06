@@ -30,15 +30,15 @@ module ClassModule
         public sub new(str as string, ag as integer)
             name = str
             age = ag
-            Console.WriteLine("Object is being created")
+            Console.WriteLine("Person Object is being created")
         end sub
 
         'destructor
         protected overrides sub Finalize()  ' overrides destructure 
-            Console.WriteLine("Object is being deleted")
+            Console.WriteLine("Person Object is being deleted")
         end sub
 
-        public function show()  
+        public overridable function show()  
             console.writeline("{0}, {1}",name, age)
         end function
 
@@ -58,15 +58,18 @@ module ClassModule
             course = crs
         end sub
 
-        public function show()
-            mybase.show()
-            console.writeline("{0}, {1}, {2}",rollnum, university, course)
+        protected overrides sub Finalize()  ' overrides destructure 
+            Console.WriteLine("Student Object is being deleted")
+        end sub
+
+        public overrides function show()
+            console.writeline("{0}, {1}, {2}, {3}, {4}",name, age,rollnum, university, course)
         end function
 
     end class
 
 
-    sub main()
+    public sub main()
         console.writeline("---------------")
         dim per as person = new person("Rahul", 22)
         per.show()
@@ -74,6 +77,9 @@ module ClassModule
         console.writeline("---------------")
         dim std as student = new student("Amit", 23, 01, "World", "Computer")
         std.show()
+
+        console.writeline("---------------")
+
     end sub
 
 end module
