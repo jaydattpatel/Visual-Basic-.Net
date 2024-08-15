@@ -28,8 +28,9 @@ module ClassModule
 
         'constructor
         public sub new(str as string, ag as integer)
-            name = str
-            age = ag
+        ' "me" keyword use to point to current instance like 'this' keyword
+            me.name = str
+            me.age = ag
             Console.WriteLine("Person Object is being created")
         end sub
 
@@ -39,7 +40,7 @@ module ClassModule
         end sub
 
         public overridable function show()  
-            console.writeline("{0}, {1}",name, age)
+            console.writeline("{0}, {1}",me.name, me.age)
         end function
 
     end class
@@ -53,9 +54,9 @@ module ClassModule
 
         public sub new(name as string, age as integer, roll as integer, college as string, crs as string)
             mybase.new(name,age)
-            rollnum = roll
-            university = college
-            course = crs
+            me.rollnum = roll
+            me.university = college
+            me.course = crs
         end sub
 
         protected overrides sub Finalize()  ' overrides destructure 
@@ -63,7 +64,7 @@ module ClassModule
         end sub
 
         public overrides function show()
-            console.writeline("{0}, {1}, {2}, {3}, {4}",name, age,rollnum, university, course)
+            console.writeline("{0}, {1}, {2}, {3}, {4}",me.name, me.age,me.rollnum, me.university, me.course)
         end function
 
     end class
